@@ -42,15 +42,12 @@
 
 ###################################################################################################
 
-- name: redhat | dependencies
+- name: redhat
 
   when: os_family_is_redhat
 
-  become: true
-
-  with_items: '{{ grub_dependencies }}'
-
-  yum : name={{ item }} state=present
+  include: redhat.yml
+  static : false
 
   tags:
     - artemis

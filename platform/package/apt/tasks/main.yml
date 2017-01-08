@@ -52,17 +52,15 @@
     and package_apt_keys is not none
     and package_apt_keys | length > 0
 
-  become: true
-
-  with_items: '{{ package_apt_keys }}'
-
-  apt_key: data='{{ item }}'
+  include: keys.yml
+  static : false
 
   tags:
     - artemis
     - platform
     - package
     - apt
+    - keys
 
 ###################################################################################################
 
