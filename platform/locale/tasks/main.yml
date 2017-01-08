@@ -46,6 +46,7 @@
   when: os_family_is_debian
 
   include: debian.yml
+  static : false
 
   tags:
     - artemis
@@ -61,6 +62,7 @@
     and ansible_distribution_major_version | lower == '14'
 
   include: ubuntu-14.yml
+  static : false
 
   tags:
     - artemis
@@ -76,6 +78,7 @@
      or ansible_distribution_major_version | lower != '14'
 
   include: systemd.yml
+  static : false
 
   tags:
     - artemis

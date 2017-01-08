@@ -137,6 +137,7 @@
 - when: package_manager_is_apt
 
   include: apt.yml
+  static : false
 
   tags:
     - artemis
@@ -149,6 +150,7 @@
 - when: package_manager_is_yum
 
   include: yum.yml
+  static : false
 
   tags:
     - artemis
@@ -159,6 +161,7 @@
 ###################################################################################################
 
 - include: pac.yml
+  static : true
 
   tags:
     - artemis

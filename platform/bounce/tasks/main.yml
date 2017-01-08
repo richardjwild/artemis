@@ -48,6 +48,7 @@
     and bounce_required_file | length > 0
 
   include: required.yml
+  static : false
 
   tags:
     - artemis
