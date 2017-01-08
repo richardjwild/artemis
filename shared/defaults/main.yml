@@ -55,13 +55,17 @@ dynamic_hardware: false
 
 ###################################################################################################
 
+yaml_file_extension: .yml
+
+###################################################################################################
+
 overrides         : true
 
 overrides_word    : overrides
 
 overrides_none    : '{{ dev_null       }}'
 overrides_base    : '{{ overrides_none }}'
-overrides_file    : '{{ overrides_word }}'
+overrides_file    : '{{ overrides_word }}{{ yaml_file_extension }}'
 overrides_path    : '{% if overrides_base is none or overrides_base | trim | length == 0 or overrides_base == overrides_none %}{{ overrides_none }}{% else %}{{ overrides_base }}/{{ overrides_file }}{% endif %}'
 
 overrides_verify  : ({{ overrides }} and ('{{ overrides_path }}' != '{{ overrides_none }}'))

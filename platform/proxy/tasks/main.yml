@@ -2,7 +2,10 @@
 
 - name: import | package
 
-  include_vars: '{{ package_manager_lower }}'
+  when: package_manager_is_apt
+     or package_manager_is_yum
+
+  include_vars: '{{ package_manager_lower }}{{ yaml_file_extension }}'
 
   tags:
     - artemis

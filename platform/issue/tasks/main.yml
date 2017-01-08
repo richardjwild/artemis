@@ -5,7 +5,7 @@
   when: issue
     and {{ security_mode_inc_balanced }}
 
-  include_vars: '{{ security_word }}-{{ security_mode_balanced }}'
+  include_vars: '{{ security_word }}-{{ security_mode_balanced }}{{ yaml_file_extension }}'
 
   tags:
     - artemis

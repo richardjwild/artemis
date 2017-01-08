@@ -2,7 +2,10 @@
 
 - name: import | family
 
-  include_vars: '{{ os_family_lower }}'
+  when: os_family_is_debian
+     or os_family_is_redhat
+
+  include_vars: '{{ os_family_lower }}{{ yaml_file_extension }}'
 
   tags:
     - artemis

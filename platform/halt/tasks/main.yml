@@ -2,11 +2,10 @@
 
 - name: import | distribution
 
-  include_vars: '{{ item }}'
+  when: distribution_release_is_trusty
+     or distribution_release_is_utopic
 
-  with_first_found:
-    - '{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}'
-    - '{{ dev_null }}'
+  include_vars: '{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}{{ yaml_file_extension }}'
 
   tags:
     - artemis
