@@ -56,7 +56,7 @@
 
   become: true
 
-  with_items: btrfs_dependencies
+  with_items: '{{ btrfs_dependencies }}'
 
   apt : name={{ item }} state=present install_recommends=false
 
@@ -74,7 +74,7 @@
 
   become: true
 
-  with_items: btrfs_dependencies
+  with_items: '{{ btrfs_dependencies }}'
 
   yum : name={{ item }} state=present
 
@@ -195,7 +195,7 @@
 
   become: true
 
-  with_items: btrfs_devices
+  with_items: '{{ btrfs_devices }}'
 
   command: '{{ btrfs_base_command }} device add {{ item }} {{ btrfs_mount }}'
 
@@ -214,7 +214,7 @@
 
   become: true
 
-  with_items: blkid.stdout_lines
+  with_items: '{{ blkid.stdout_lines }}'
 
   command: '{{ btrfs_base_command }} device delete {{ item }} {{ btrfs_mount }}'
 
