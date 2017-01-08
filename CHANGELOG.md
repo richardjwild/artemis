@@ -6,6 +6,12 @@
 
 # **[Unreleased](https://github.com/travisperkins/artemis/compare/v1.5.0...HEAD) (HEAD)**
 
+## NOTES:
+1. All roles are now fully compatible with **Ansible 2.2.0.0**
+
+### platform/ntpd
+- **Bugfix:** Modified the distribution import for Ubuntu 14.xx to be consistent - [Richard Lees]
+
 <!------------------------------------------------------------------------------------------------>
 
 # **[v1.5.0](https://github.com/travisperkins/artemis/releases/tag/v1.5.0) (January 4, 2017)**
