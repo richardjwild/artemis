@@ -26,9 +26,9 @@
       - overrides_path is not none
       - overrides_path | length > 0
 
-      - '{{ deployment_mode_is_live }} or {{ deployment_mode_is_image }}'
+      - deployment_mode_is_live or deployment_mode_is_image
 
-      - '{{ security_mode_is_standard }} or {{ security_mode_is_balanced }} or {{ security_mode_is_enhanced }} or {{ security_mode_is_custom }}'
+      - security_mode_is_standard or security_mode_is_balanced or security_mode_is_enhanced or security_mode_is_custom
 
   tags:
     - artemis

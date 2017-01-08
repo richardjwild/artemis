@@ -68,7 +68,7 @@ overrides_base    : '{{ overrides_none }}'
 overrides_file    : '{{ overrides_word }}{{ yaml_file_extension }}'
 overrides_path    : '{% if overrides_base is none or overrides_base | trim | length == 0 or overrides_base == overrides_none %}{{ overrides_none }}{% else %}{{ overrides_base }}/{{ overrides_file }}{% endif %}'
 
-overrides_verify  : ({{ overrides }} and ('{{ overrides_path }}' != '{{ overrides_none }}'))
+overrides_verify  : '{{ (overrides and (overrides_path != overrides_none)) | bool }}'
 overrides_verified: false
 
 ###################################################################################################
@@ -87,10 +87,10 @@ pam_module_lastlog: pam_lastlog.so
 deployment_mode         : '{{ deployment_mode_live }}'
 
 deployment_mode_live    : live
-deployment_mode_is_live : ('{{ deployment_mode }}' == '{{ deployment_mode_live }}')
+deployment_mode_is_live : '{{ (deployment_mode == deployment_mode_live) | bool }}'
 
 deployment_mode_image   : image
-deployment_mode_is_image: ('{{ deployment_mode }}' == '{{ deployment_mode_image }}')
+deployment_mode_is_image: '{{ (deployment_mode == deployment_mode_image) | bool }}'
 
 ###################################################################################################
 
@@ -99,57 +99,57 @@ security_word                 : security
 security_mode                 : '{{ security_mode_balanced }}'
 
 security_mode_standard        : standard
-security_mode_is_standard     : ('{{   security_mode              }}' == '{{ security_mode_standard    }}')
-security_mode_inc_standard    : ( {{   security_mode_is_standard  }}  or  {{ security_mode_is_balanced }} or {{ security_mode_is_enhanced }})
-security_mode_not_inc_standard: not {{ security_mode_inc_standard }}
+security_mode_is_standard     : '{{ (security_mode == security_mode_standard)                                             | bool }}'
+security_mode_inc_standard    : '{{ (security_mode_is_enhanced or security_mode_is_balanced or security_mode_is_standard) | bool }}'
+security_mode_not_inc_standard: '{{ (not security_mode_inc_standard)                                                      | bool }}'
 
 security_mode_balanced        : balanced
-security_mode_is_balanced     : ('{{   security_mode              }}' == '{{ security_mode_balanced    }}')
-security_mode_inc_balanced    : ( {{   security_mode_is_balanced  }}  or  {{ security_mode_is_enhanced }} )
-security_mode_not_inc_balanced: not {{ security_mode_inc_balanced }}
+security_mode_is_balanced     : '{{ (security_mode == security_mode_balanced)                | bool }}'
+security_mode_inc_balanced    : '{{ (security_mode_is_enhanced or security_mode_is_balanced) | bool }}'
+security_mode_not_inc_balanced: '{{ (not security_mode_inc_balanced)                         | bool }}'
 
 security_mode_enhanced        : enhanced
-security_mode_is_enhanced     : ('{{   security_mode              }}' == '{{ security_mode_enhanced }}')
-security_mode_inc_enhanced    : ( {{   security_mode_is_enhanced  }})
-security_mode_not_inc_enhanced: not {{ security_mode_inc_enhanced }}
+security_mode_is_enhanced     : '{{ (security_mode == security_mode_enhanced) | bool }}'
+security_mode_inc_enhanced    : '{{ (security_mode_is_enhanced)               | bool }}'
+security_mode_not_inc_enhanced: '{{ (not security_mode_inc_enhanced)          | bool }}'
 
 security_mode_custom          : custom
-security_mode_is_custom       : ('{{ security_mode }}' == '{{ security_mode_custom }}')
+security_mode_is_custom       : '{{ (security_mode == security_mode_custom) | bool }}'
 
 ###################################################################################################
 
-os_family_native   :  '{{ ansible_os_family        }}'
-os_family_lower    :  '{{ os_family_native | lower }}'
-os_family_is_debian: ('{{ os_family_lower          }}' == 'debian')
-os_family_is_redhat: ('{{ os_family_lower          }}' == 'redhat')
+os_family_native   : '{{ ansible_os_family                     }}'
+os_family_lower    : '{{ os_family_native              | lower }}'
+os_family_is_debian: '{{ (os_family_lower == "debian") | bool  }}'
+os_family_is_redhat: '{{ (os_family_lower == "redhat") | bool  }}'
 
 ###################################################################################################
 
-distribution_native   :  '{{ ansible_distribution        }}'
-distribution_lower    :  '{{ distribution_native | lower }}'
-distribution_is_debian: ('{{ distribution_lower          }}' == 'debian')
-distribution_is_ubuntu: ('{{ distribution_lower          }}' == 'ubuntu')
-distribution_is_centos: ('{{ distribution_lower          }}' == 'centos')
-distribution_is_rhel  : ('{{ distribution_lower          }}' == 'rhel')
+distribution_native   : '{{ ansible_distribution                     }}'
+distribution_lower    : '{{ distribution_native              | lower }}'
+distribution_is_debian: '{{ (distribution_lower == "debian") | bool  }}'
+distribution_is_ubuntu: '{{ (distribution_lower == "ubuntu") | bool  }}'
+distribution_is_centos: '{{ (distribution_lower == "centos") | bool  }}'
+distribution_is_rhel  : '{{ (distribution_lower == "rhel")   | bool  }}'
 
 ###################################################################################################
 
-package_manager_native:  '{{ ansible_pkg_mgr                }}'
-package_manager_lower :  '{{ package_manager_native | lower }}'
-package_manager_upper :  '{{ package_manager_native | upper }}'
-package_manager_is_apt: ('{{ package_manager_lower          }}' == 'apt')
-package_manager_is_yum: ('{{ package_manager_lower          }}' == 'yum')
+package_manager_native: '{{ ansible_pkg_mgr                          }}'
+package_manager_lower : '{{ package_manager_native           | lower }}'
+package_manager_upper : '{{ package_manager_native           | upper }}'
+package_manager_is_apt: '{{ (package_manager_lower == "apt") | bool  }}'
+package_manager_is_yum: '{{ (package_manager_lower == "yum") | bool  }}'
 
 ###################################################################################################
 
-distribution_release_native    :  '{{ ansible_distribution_release        }}'
-distribution_release_lower     :  '{{ distribution_release_native | lower }}'
-distribution_release_is_jessie : ('{{ distribution_release_lower          }}' == 'jessie' )
-distribution_release_is_trusty : ('{{ distribution_release_lower          }}' == 'trusty' )
-distribution_release_is_utopic : ('{{ distribution_release_lower          }}' == 'utopic' )
-distribution_release_is_vivid  : ('{{ distribution_release_lower          }}' == 'vivid'  )
-distribution_release_is_wily   : ('{{ distribution_release_lower          }}' == 'wily'   )
-distribution_release_is_xenial : ('{{ distribution_release_lower          }}' == 'xenial' )
-distribution_release_is_yakkety: ('{{ distribution_release_lower          }}' == 'yakkety')
+distribution_release_native    : '{{ ansible_distribution_release                      }}'
+distribution_release_lower     : '{{ distribution_release_native               | lower }}'
+distribution_release_is_jessie : '{{ (distribution_release_lower == "jessie")  | bool  }}'
+distribution_release_is_trusty : '{{ (distribution_release_lower == "trusty")  | bool  }}'
+distribution_release_is_utopic : '{{ (distribution_release_lower == "utopic")  | bool  }}'
+distribution_release_is_vivid  : '{{ (distribution_release_lower == "vivid")   | bool  }}'
+distribution_release_is_wily   : '{{ (distribution_release_lower == "wily")    | bool  }}'
+distribution_release_is_xenial : '{{ (distribution_release_lower == "xenial")  | bool  }}'
+distribution_release_is_yakkety: '{{ (distribution_release_lower == "yakkety") | bool  }}'
 
 ###################################################################################################

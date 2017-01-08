@@ -28,7 +28,7 @@ ntpd_date_command: ntpdate -bup {{ ntpd_date_samples }} {{ ntpd_servers_flat }}{
 ###################################################################################################
 
 ntpd_servers_flat       : '{% if ntpd_servers is defined and ntpd_servers is not none and ntpd_servers | length > 0 %}{% for item in ntpd_servers %}{{ item }}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}'
-ntpd_servers_is_supplied: (ntpd_servers is defined and ntpd_servers is not none and ntpd_servers | length > 0)
+ntpd_servers_is_supplied: '{{ (ntpd_servers is defined and ntpd_servers is not none and ntpd_servers | length > 0) | bool }}'
 ntpd_servers_exclusive  : true
 
 ###################################################################################################
@@ -41,13 +41,13 @@ ntpd_pools:
   - 3.uk.pool.ntp.org
 
 ntpd_pools_flat       : '{% if ntpd_pools is defined and ntpd_pools is not none and ntpd_pools | length > 0 %}{% for item in ntpd_pools %}{% if not loop.first %} {% endif %}{{ item }}{% endfor %}{% endif %}'
-ntpd_pools_is_supplied: (ntpd_pools is defined and ntpd_pools is not none and ntpd_pools | length > 0)
+ntpd_pools_is_supplied: '{{ (ntpd_pools is defined and ntpd_pools is not none and ntpd_pools | length > 0) | bool }}'
 ntpd_pools_exclusive  : false
 
 ###################################################################################################
 
-ntpd_source_is_supplied   : ({{ ntpd_servers_is_supplied }} or {{ ntpd_pools_is_supplied }})
-ntpd_source_is_exclusivity: (not (ntpd_servers_exclusive and ntpd_pools_exclusive))
+ntpd_source_is_supplied   : '{{ (ntpd_servers_is_supplied or ntpd_pools_is_supplied)    | bool }}'
+ntpd_source_is_exclusivity: '{{ (not (ntpd_servers_exclusive and ntpd_pools_exclusive)) | bool }}'
 
 ###################################################################################################
 
