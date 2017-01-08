@@ -1,22 +1,5 @@
 ###################################################################################################
 
-- name: debian | update
-
-  when: patch_update
-
-  become: true
-
-  apt : update_cache=yes
-
-  tags:
-    - artemis
-    - platform
-    - package
-    - patch
-    - debian
-
-###################################################################################################
-
 - name: debian | upgrade
 
   when: patch_upgrade
@@ -24,6 +7,7 @@
   become: true
 
   apt : upgrade={{ patch_apt_upgrade }}
+        update_cache=yes
 
   register: upgrade
 
