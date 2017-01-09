@@ -42,18 +42,17 @@
 
 ###################################################################################################
 
-- name: redhat
+- name: family
 
   when: os_family_is_redhat
 
-  include: redhat.yml
+  include: '{{ os_family_lower }}{{ yaml_file_extension }}'
   static : false
 
   tags:
     - artemis
     - boot
     - grub
-    - redhat
 
 ###################################################################################################
 

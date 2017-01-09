@@ -134,33 +134,18 @@
 
 ###################################################################################################
 
-- name: apt
+- name: package
 
   when: package_manager_is_apt
+     or package_manager_is_yum
 
-  include: apt.yml
+  include: '{{ package_manager_lower }}{{ yaml_file_extension }}'
   static : false
 
   tags:
     - artemis
     - platform
     - proxy
-    - apt
-
-###################################################################################################
-
-- name: yum
-
-  when: package_manager_is_yum
-
-  include: yum.yml
-  static : false
-
-  tags:
-    - artemis
-    - platform
-    - proxy
-    - yum
 
 ###################################################################################################
 
@@ -173,7 +158,6 @@
     - artemis
     - platform
     - proxy
-    - pac
 
 ###################################################################################################
 
