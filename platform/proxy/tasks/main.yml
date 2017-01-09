@@ -134,7 +134,9 @@
 
 ###################################################################################################
 
-- when: package_manager_is_apt
+- name: apt
+
+  when: package_manager_is_apt
 
   include: apt.yml
   static : false
@@ -147,7 +149,9 @@
 
 ###################################################################################################
 
-- when: package_manager_is_yum
+- name: yum
+
+  when: package_manager_is_yum
 
   include: yum.yml
   static : false
@@ -160,7 +164,9 @@
 
 ###################################################################################################
 
-- include: pac.yml
+- name: pac
+
+  include: pac.yml
   static : true
 
   tags:

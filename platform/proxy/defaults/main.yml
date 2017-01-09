@@ -87,7 +87,6 @@ proxy_pac_local         : '{{ proxy_pac_enabled    }}'
 proxy_pac_local_file    : '{{ proxy_base           }}/proxy.pac'
 proxy_pac_local_download: '{{ proxy_pac_local_file }}.download'
 proxy_pac_local_url     : file://{{ proxy_pac_local_file }}
-proxy_pac_edits         : []
 proxy_pac_env_name      : auto_proxy
 proxy_pac_env_lines     :
 

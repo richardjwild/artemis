@@ -1,0 +1,35 @@
+###################################################################################################
+
+- name: pac | edit | copy
+
+  become: true
+
+  shell: cp {{ proxy_pac_local_download }} {{ proxy_pac_local_file }}
+
+  tags:
+    - artemis
+    - platform
+    - proxy
+    - pac
+    - edit
+
+###################################################################################################
+
+- name: pac | edit | parse
+
+  become: true
+
+  with_items: '{{ proxy_pac_edits }}'
+
+  replace: regexp={{ item.search          }}
+          replace={{ item.replace         }}
+             dest={{ proxy_pac_local_file }}
+
+  tags:
+    - artemis
+    - platform
+    - proxy
+    - pac
+    - edit
+
+###################################################################################################

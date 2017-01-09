@@ -1,0 +1,18 @@
+###################################################################################################
+
+- name: debian | dependencies
+
+  become: true
+
+  with_items: '{{ cron_dependencies }}'
+
+  apt : name={{ item }} state=present install_recommends=false
+
+  tags:
+    - artemis
+    - platform
+    - cron
+    - daemon
+    - debian
+
+###################################################################################################

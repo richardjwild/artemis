@@ -1,0 +1,18 @@
+###################################################################################################
+
+- name: redhat | dependencies
+
+  become: true
+
+  with_items: '{{ ssh_dependencies }}'
+
+  yum : name={{ item }} state=present
+
+  tags:
+    - artemis
+    - platform
+    - ssh
+    - common
+    - redhat
+
+###################################################################################################

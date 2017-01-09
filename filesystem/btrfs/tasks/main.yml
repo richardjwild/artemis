@@ -50,15 +50,12 @@
 
 ###################################################################################################
 
-- name: debian | dependencies
+- name: debian
 
   when: os_family_is_debian
 
-  become: true
-
-  with_items: '{{ btrfs_dependencies }}'
-
-  apt : name={{ item }} state=present install_recommends=false
+  include: debian.yml
+  static : false
 
   tags:
     - artemis
@@ -68,15 +65,12 @@
 
 ###################################################################################################
 
-- name: redhat | dependencies
+- name: redhat
 
   when: os_family_is_redhat
 
-  become: true
-
-  with_items: '{{ btrfs_dependencies }}'
-
-  yum : name={{ item }} state=present
+  include: redhat.yml
+  static : false
 
   tags:
     - artemis

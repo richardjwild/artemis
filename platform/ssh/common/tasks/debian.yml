@@ -1,0 +1,18 @@
+###################################################################################################
+
+- name: debian | dependencies
+
+  become: true
+
+  with_items: '{{ ssh_dependencies }}'
+
+  apt : name={{ item }} state=present install_recommends=false
+
+  tags:
+    - artemis
+    - platform
+    - ssh
+    - common
+    - debian
+
+###################################################################################################
