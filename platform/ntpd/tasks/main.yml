@@ -14,7 +14,7 @@
 
 ###################################################################################################
 
-- name: import | distribution
+- name: import | release
 
   when: distribution_release_is_trusty
      or distribution_release_is_utopic
