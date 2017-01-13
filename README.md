@@ -14,7 +14,13 @@ See [CHANGELOG] for complete release schedule
 
 ## Dependencies
 
-- **Ansible 2.2.0.0** or above
+- **Artemis 2.x**
+
+  - Ansible 2.2.x
+
+- **Artemis 1.x**
+
+  - Ansible 1.9.x
 
 <!------------------------------------------------------------------------------------------------>
 
