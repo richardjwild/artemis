@@ -6,9 +6,8 @@
 
   become: true
 
-  apt : upgrade={{ patch_apt_upgrade }}
-        update_cache=yes
-
+  apt : upgrade={{ patch_apt_upgrade }} update_cache=yes
+        
   register: upgrade
 
   tags:
