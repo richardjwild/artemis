@@ -42,10 +42,9 @@
 
   become: true
 
-  template: src={{ logrotate_src     }}
-           dest={{ logrotate_dest    }}
-           mode={{ logrotate_mode    }}
-          owner={{ logrotate_as_user }}
+  template: src={{ logrotate_src   }}
+           dest={{ logrotate_dest  }}
+           mode={{ logrotate_mode  }}
 
   tags:
     - artemis
