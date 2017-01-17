@@ -9,8 +9,27 @@
 ## NOTES:
 1. All roles are now fully compatible with **Ansible 2.2.0.0**
 
+### logging/logrotate
+- **Bugfix:** The logrotate configuration file generated will now be owned by **root** - [Richard Lees]
+- **Change:** Allow the users group for which the logrotate job will run as to be specified - [Richard Lees]
+
 ### platform/ntpd
 - **Bugfix:** Modified the distribution import for Ubuntu 14.xx to be consistent - [Richard Lees]
+
+### platform/ssh/agent
+- **Change:** Allow the users group for which the SSH agent will be configured to be specified - [Richard Lees]
+
+### platform/ssh/client
+- **Change:** Make use of the users group that is now specified in the **platform/ssh/common** role - [Richard Lees]
+
+### platform/ssh/common
+- **Change:** Allow the users group for SSH client related configuration to be specified - [Richard Lees]
+
+### platform/ssh/key
+- **Change:** Make use of the users group that is now specified in the **platform/ssh/common** role - [Richard Lees]
+
+### process-control/init-sysv
+- **Change:** All the users group for which the daemon will be run as to be specified - [Richard Lees]
 
 <!------------------------------------------------------------------------------------------------>
 
