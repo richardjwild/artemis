@@ -2,12 +2,13 @@
 
 - name: private
 
-  become     : true
-  become_user: '{{ ssh_user }}'
+  become: true
 
   copy: src={{ ssh_key_src_path  }}
        dest={{ ssh_key_dest_path }}
        mode={{ ssh_key_dest_mode }}
+      owner={{ ssh_user          }}
+      group={{ ssh_group         }}
 
   tags:
     - artemis

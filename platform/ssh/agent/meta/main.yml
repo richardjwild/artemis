@@ -4,6 +4,7 @@ dependencies:
 
   -   role: shared
 
-  - { role: platform/ssh/common, ssh_user: '{{ ssh_agent_user }}' }
+  - { role: platform/ssh/common, ssh_user : '{{ ssh_agent_user  }}' ,
+                                 ssh_group: '{{ ssh_agent_group }}' }
 
 ###################################################################################################

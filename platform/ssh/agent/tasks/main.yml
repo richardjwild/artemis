@@ -19,12 +19,13 @@
 
 - name: env | socket
 
-  become     : true
-  become_user: '{{ ssh_agent_user }}'
+  become: true
 
   lineinfile: line='{{ ssh_agent_auth_sock_line }}'
               dest={{  ssh_agent_env_dest       }}
               mode={{  ssh_agent_env_mode       }}
+             owner={{  ssh_agent_user           }}
+             group={{  ssh_agent_group          }}
             create=true
 
   tags:
@@ -37,8 +38,7 @@
 
 - name: env | agent
 
-  become     : true
-  become_user: '{{ ssh_agent_user }}'
+  become: true
 
   lineinfile: line='{{ ssh_agent_agent_line     }}'
        insertafter='{{ ssh_agent_auth_sock_line }}'
@@ -54,8 +54,7 @@
 
 - name: env | add
 
-  become     : true
-  become_user: '{{ ssh_agent_user }}'
+  become: true
 
   lineinfile: line='{{ ssh_agent_add_line   }}'
        insertafter='{{ ssh_agent_agent_line }}'
@@ -71,8 +70,7 @@
 
 - name: env | add | pem
 
-  become     : true
-  become_user: '{{ ssh_agent_user }}'
+  become: true
 
   lineinfile: line='{{ ssh_agent_add_pem_line }}'
        insertafter='{{ ssh_agent_add_line     }}'

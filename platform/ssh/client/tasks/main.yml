@@ -2,12 +2,13 @@
 
 - name: configure
 
-  become     : true
-  become_user: '{{ ssh_user }}'
+  become: true
 
   template: src={{ ssh_config_src  }}
            dest={{ ssh_config_dest }}
            mode={{ ssh_config_mode }}
+          owner={{ ssh_user        }}
+          group={{ ssh_group       }}
 
   tags:
     - artemis

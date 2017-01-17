@@ -82,11 +82,12 @@
 
 - name: base
 
-  become     : true
-  become_user: '{{ ssh_user }}'
+  become: true
 
-  file: dest={{ ssh_base }}
-        mode={{ ssh_mode }}
+  file: dest={{ ssh_base  }}
+        mode={{ ssh_mode  }}
+       owner={{ ssh_user  }}
+       group={{ ssh_group }}
        state=directory
 
   tags:
