@@ -18,7 +18,7 @@ case ${1} in
 
    start)
       echo 'starting: {{ init_sysv_name }}'
-      {{ init_sysv_daemonise_command }} --start --quiet --make-pidfile --pidfile {{ init_sysv_pid_file }} --chdir {{ init_sysv_chdir }} --chuid {{ init_sysv_run_as }} --background --startas /bin/sh -- -c '{% for entry in init_sysv_env_vars | default() %}{{ entry }} {% endfor %}exec {{ init_sysv_command }} >> {{ init_sysv_log_file }} 2>&1'
+      {{ init_sysv_daemonise_command }} --start --quiet --make-pidfile --pidfile {{ init_sysv_pid_file }} --chdir {{ init_sysv_chdir }} --chuid {{ init_sysv_user }}:{{ init_sysv_group }} --background --startas /bin/sh -- -c '{% for entry in init_sysv_env_vars | default() %}{{ entry }} {% endfor %}exec {{ init_sysv_command }} >> {{ init_sysv_log_file }} 2>&1'
       ;;
 
    stop)

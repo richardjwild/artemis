@@ -1,7 +1,8 @@
 ###################################################################################################
 
 init_sysv_chdir  : /
-init_sysv_run_as : '{{ root_user }}'
+init_sysv_user   : '{{ root_user      }}'
+init_sysv_group  : '{{ init_sysv_user }}'
 init_sysv_enabled: true
 init_sysv_state  : started
 

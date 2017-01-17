@@ -23,13 +23,14 @@
 
 ###################################################################################################
 
-- name: pid | touch
+- name: pid
 
   become: true
 
   file: dest={{ init_sysv_pid_file }}
         mode={{ init_sysv_pid_mode }}
-       owner={{ init_sysv_run_as   }}
+       owner={{ init_sysv_user     }}
+       group={{ init_sysv_group    }}
        state=touch
 
   changed_when: false
@@ -42,30 +43,14 @@
 
 ###################################################################################################
 
-- name: pid | check
-
-  become     : true
-  become_user: '{{ init_sysv_run_as }}'
-
-  file: dest={{ init_sysv_pid_file }} state=touch
-
-  changed_when: false
-
-  tags:
-    - artemis
-    - process-control
-    - init-sysv
-    - debian
-
-###################################################################################################
-
-- name: log | touch
+- name: log
 
   become: true
 
   file: dest={{ init_sysv_log_file }}
         mode={{ init_sysv_log_mode }}
-       owner={{ init_sysv_run_as   }}
+       owner={{ init_sysv_user     }}
+       group={{ init_sysv_group    }}
        state=touch
 
   changed_when: false
@@ -78,50 +63,17 @@
 
 ###################################################################################################
 
-- name: log | check
-
-  become     : true
-  become_user: '{{ init_sysv_run_as }}'
-
-  file: dest={{ init_sysv_log_file }} state=touch
-
-  changed_when: false
-
-  tags:
-    - artemis
-    - process-control
-    - init-sysv
-    - debian
-
-###################################################################################################
-
-- name: script | configure
+- name: configure
 
   become: true
 
-  template: src={{ init_sysv_src    }}
-           dest={{ init_sysv_dest   }}
-           mode={{ init_sysv_mode   }}
-          owner={{ init_sysv_run_as }}
+  template: src={{ init_sysv_src   }}
+           dest={{ init_sysv_dest  }}
+           mode={{ init_sysv_mode  }}
+          owner={{ init_sysv_user  }}
+          group={{ init_sysv_group }}
 
   register: configure
-
-  tags:
-    - artemis
-    - process-control
-    - init-sysv
-    - debian
-
-###################################################################################################
-
-- name: script | check
-
-  become     : true
-  become_user: '{{ init_sysv_run_as }}'
-
-  file: dest={{ init_sysv_dest }} state=touch
-
-  changed_when: false
 
   tags:
     - artemis
@@ -179,3 +131,4 @@
     - debian
 
 ###################################################################################################
+
