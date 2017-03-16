@@ -34,7 +34,7 @@
 
       - btrfs_label is defined
       - btrfs_label is not none
-      - btrfs_label | length > 0
+      - btrfs_label | trim | length > 0
 
       - btrfs_devices is defined
       - btrfs_devices is not none

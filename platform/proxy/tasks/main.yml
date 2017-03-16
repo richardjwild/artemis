@@ -31,11 +31,11 @@
 
   when: proxy_host is defined
     and proxy_host is not none
-    and proxy_host | length > 0
+    and proxy_host | trim | length > 0
 
     and proxy_port is defined
     and proxy_port is not none
-    and proxy_port | string | length > 0
+    and proxy_port | trim | length > 0
 
   set_fact:
     proxy_enabled       : true
