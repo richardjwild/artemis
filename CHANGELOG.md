@@ -8,6 +8,7 @@
 
 ## NOTES:
 1. All roles are now fully compatible with **Ansible 2.2.0.0**
+2. All variable length checks, with the exclusion of lists, are now trimmed
 
 ### logging/logrotate
 - **Bugfix:** The logrotate configuration file generated will now be owned by **root** - [Richard Lees]
