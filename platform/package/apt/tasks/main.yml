@@ -2,10 +2,7 @@
 
 - name: import | distribution
 
-  when: distribution_is_debian
-     or distribution_is_ubuntu
-
-  include_vars: '{{ distribution_lower }}{{ yaml_file_extension }}'
+  include_vars: '{{ package_apt_distro }}'
 
   tags:
     - artemis

@@ -2,10 +2,7 @@
 
 - name: import | family
 
-  when: os_family_is_debian
-     or os_family_is_redhat
-
-  include_vars: '{{ os_family_lower }}{{ yaml_file_extension }}'
+  include_vars: '{{ os_family_lower }}'
 
   tags:
     - artemis
@@ -18,7 +15,7 @@
 
   when: security_mode_inc_balanced
 
-  include_vars: '{{ security_word }}-{{ security_mode_balanced }}{{ yaml_file_extension }}'
+  include_vars: '{{ security_word }}-{{ security_mode_balanced }}'
 
   tags:
     - artemis
@@ -31,7 +28,7 @@
 
   when: security_mode_inc_enhanced
 
-  include_vars: '{{ security_word }}-{{ security_mode_enhanced }}{{ yaml_file_extension }}'
+  include_vars: '{{ security_word }}-{{ security_mode_enhanced }}'
 
   tags:
     - artemis

@@ -2,9 +2,11 @@
 
 - name: import | family
 
-  when: os_family_is_redhat
+  include_vars: '{{ item }}'
 
-  include_vars: '{{ os_family_lower }}{{ yaml_file_extension }}'
+  with_first_found:
+    - '{{ os_family_lower }}'
+    - '{{ dev_null        }}'
 
   tags:
     - artemis
